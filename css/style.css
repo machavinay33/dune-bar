@@ -10,9 +10,9 @@
     --color-text: #fafaf9;
     --color-text-muted: #a8a29e;
     --color-text-dim: #78716c;
-    --color-accent: #d4a853;
-    --color-accent-light: #e8c87a;
-    --color-accent-dark: #b8923e;
+    --color-accent: #d1a945;
+    --color-accent-light: #f1d58a;
+    --color-accent-dark: #a68432;
     --color-border: #292524;
     --color-border-light: #44403c;
     --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
@@ -104,15 +104,17 @@ img {
 }
 
 .logo-img {
-    height: 60px;
+    height: 80px;
     width: auto;
     object-fit: contain;
     transition: transform var(--transition-normal);
 }
 
 .navbar.scrolled .logo-img {
-    height: 45px;
+    height: 60px;
 }
+
+/* Handled above */
 
 .nav-menu {
     display: flex;
@@ -1430,4 +1432,28 @@ textarea:focus-visible {
 ::selection {
     background: rgba(212, 168, 83, 0.3);
     color: var(--color-text);
+}
+
+/* Enhanced Logo & Title Styles */
+.hero-title .line {
+    background: linear-gradient(135deg, #f1d58a 0%, #d1a945 50%, #a68432 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.hero-logo img {
+    filter: drop-shadow(0 0 15px rgba(209, 169, 69, 0.3));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
