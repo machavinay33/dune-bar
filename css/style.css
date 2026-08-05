@@ -15,8 +15,9 @@
     --color-accent-dark: #b8923e;
     --color-border: #292524;
     --color-border-light: #44403c;
-    --font-display: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-secondary: 'Cormorant Garamond', serif;
     --transition-fast: 0.2s ease;
     --transition-normal: 0.4s ease;
     --transition-slow: 0.6s ease;
@@ -100,17 +101,17 @@ img {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: var(--color-text);
 }
 
-.logo-icon {
-    font-size: 1.4rem;
-    color: var(--color-accent);
+.logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    transition: transform var(--transition-normal);
+}
+
+.navbar.scrolled .logo-img {
+    height: 45px;
 }
 
 .nav-menu {
@@ -532,91 +533,101 @@ section {
 }
 
 /* ========================================
-   Menu Section
+   Menu Highlights
    ======================================== */
 .menu {
     background: var(--color-bg-elevated);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
 }
 
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+.menu-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 50px;
 }
 
-.menu-card {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    overflow: hidden;
-    transition: all var(--transition-normal);
-}
-
-.menu-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--color-border-light);
-    box-shadow: var(--shadow-lg);
-}
-
-.menu-card-img {
-    height: 220px;
-    overflow: hidden;
-}
-
-.menu-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-slow);
-}
-
-.menu-card:hover .menu-card-img img {
-    transform: scale(1.08);
-}
-
-.menu-card-content {
-    padding: 28px;
-}
-
-.menu-tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
-    padding: 4px 12px;
-    border-radius: 2px;
-    margin-bottom: 14px;
-}
-
-.menu-card-content h3 {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.menu-card-content p {
-    font-size: 0.9rem;
+.menu-tab {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--color-border-light);
     color: var(--color-text-muted);
-    line-height: 1.7;
-    margin-bottom: 16px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
 }
 
-.menu-price {
+.menu-tab:hover, .menu-tab.active {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.menu-tab.active {
+    background: rgba(212, 168, 83, 0.1);
+}
+
+.menu-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    min-height: 400px;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--color-border-light);
+    transition: transform var(--transition-fast);
+}
+
+.menu-item:hover {
+    transform: translateX(5px);
+}
+
+.menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.menu-item-name {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.menu-item-dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted var(--color-border-light);
+    margin: 0 15px;
+}
+
+.menu-item-price {
     font-family: var(--font-display);
     font-size: 1.1rem;
-    font-weight: 600;
     color: var(--color-accent);
+    font-weight: 600;
+}
+
+.menu-item-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    line-height: 1.4;
 }
 
 .menu-cta {
+    margin-top: 60px;
     text-align: center;
-    margin-top: 48px;
 }
 
 /* ========================================

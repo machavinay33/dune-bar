@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <span class="logo-icon">&#9788;</span>
-                <span class="logo-text">Dune</span>
+                <img src="images/logo.png" alt="Dune Logo" class="logo-img">
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span>
@@ -111,43 +110,14 @@
                 <h2 class="section-title reveal-up">Signature <span class="accent">Highlights</span></h2>
                 <p class="section-desc reveal-up">A curated selection from our kitchen, crafted to awaken your senses</p>
             </div>
-            <div class="menu-grid">
-                <div class="menu-card reveal-up">
-                    <div class="menu-card-img">
-                        <img src="images/bar.jpg" alt="Signature Cocktails" loading="lazy">
-                    </div>
-                    <div class="menu-card-content">
-                        <span class="menu-tag">Bar</span>
-                        <h3>Signature Cocktails</h3>
-                        <p>Handcrafted elixirs blending premium spirits with exotic infusions, herbs, and house-made syrups.</p>
-                        <span class="menu-price">From &#8377;450</span>
-                    </div>
-                </div>
-                <div class="menu-card reveal-up">
-                    <div class="menu-card-img">
-                        <img src="images/lounge.jpg" alt="Small Plates" loading="lazy">
-                    </div>
-                    <div class="menu-card-content">
-                        <span class="menu-tag">Starters</span>
-                        <h3>Artisan Small Plates</h3>
-                        <p>Perfectly portioned creations designed for sharing, featuring locally sourced ingredients and bold flavors.</p>
-                        <span class="menu-price">From &#8377;380</span>
-                    </div>
-                </div>
-                <div class="menu-card reveal-up">
-                    <div class="menu-card-img">
-                        <img src="images/terrace.jpg" alt="Main Course" loading="lazy">
-                    </div>
-                    <div class="menu-card-content">
-                        <span class="menu-tag">Mains</span>
-                        <h3>Chef's Specialties</h3>
-                        <p>Hearty, soulful dishes that traverse continents — from Mediterranean grills to Asian-inspired innovations.</p>
-                        <span class="menu-price">From &#8377;650</span>
-                    </div>
-                </div>
+            <div class="menu-tabs reveal-up" id="menuTabs">
+                <!-- Categories will be injected here -->
+            </div>
+            <div class="menu-container reveal-up" id="menuItems">
+                <!-- Menu items will be injected here -->
             </div>
             <div class="menu-cta reveal-up">
-                <a href="#" class="btn btn-primary" onclick="alert('Full menu coming soon! Follow us on Instagram for updates.'); return false;">View Full Menu</a>
+                <a href="https://www.instagram.com/dunebarandkitchen" target="_blank" class="btn btn-primary">Follow for Specials</a>
             </div>
         </div>
     </section>
@@ -450,6 +420,7 @@
         </div>
     </div>
 
+    <script type="module" src="js/menu.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

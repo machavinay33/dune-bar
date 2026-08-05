@@ -318,6 +318,64 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ========================================
+    // Dynamic Menu Rendering
+    // ========================================
+    const menuTabs = document.getElementById('menuTabs');
+    const menuItems = document.getElementById('menuItems');
+
+    if (typeof menuData !== 'undefined') {
+        renderMenu();
+    } else {
+        // Fallback if menuData is not yet loaded (async)
+        import('./menu.js').then(module => {
+            window.menuData = module.default;
+            renderMenu();
+        });
+    }
+
+    function renderMenu() {
+        if (!menuData || menuData.length === 0) return;
+
+        // Create Tabs
+        menuTabs.innerHTML = '';
+        menuData.forEach((category, index) => {
+            const tab = document.createElement('button');
+            tab.className = `menu-tab ${index === 0 ? 'active' : ''}`;
+            tab.textContent = category.category;
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                displayCategory(category.items);
+            });
+            menuTabs.appendChild(tab);
+        });
+
+        // Initial Display
+        displayCategory(menuData[0].items);
+    }
+
+    function displayCategory(items) {
+        menuItems.style.opacity = '0';
+        setTimeout(() => {
+            menuItems.innerHTML = '';
+            items.forEach(item => {
+                const itemEl = document.createElement('div');
+                itemEl.className = 'menu-item reveal-up visible';
+                itemEl.innerHTML = `
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">${item.name}</span>
+                        <div class="menu-item-dots"></div>
+                        <span class="menu-item-price">₹${item.price}</span>
+                    </div>
+                    ${item.description ? `<p class="menu-item-desc">${item.description}</p>` : ''}
+                `;
+                menuItems.appendChild(itemEl);
+            });
+            menuItems.style.opacity = '1';
+        }, 200);
+    }
+
+    // ========================================
     // Console Welcome Message
     // ========================================
     console.log('%c Dune Bar & Kitchen ', 'background: #d4a853; color: #0c0a09; font-size: 16px; font-weight: bold; padding: 8px 16px; border-radius: 4px;');
