@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -59,6 +60,27 @@
             <div class="hero-scroll">
                 <span>Scroll to explore</span>
                 <div class="scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Highlight Section -->
+    <section class="upcoming-events" id="upcoming-events">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label reveal-up">What's Happening</span>
+                <h2 class="section-title reveal-up">Upcoming <span class="accent">Events</span></h2>
+                <p class="section-desc reveal-up">Don't miss out on our exclusive events, live music nights, and special celebrations</p>
+            </div>
+            <div class="upcoming-events-grid" id="upcomingEventsGrid">
+                <!-- Events will be loaded dynamically -->
+                <div class="upcoming-events-loading reveal-up">
+                    <div class="loading-spinner"></div>
+                    <p>Loading upcoming events...</p>
+                </div>
+            </div>
+            <div class="upcoming-events-cta reveal-up">
+                <a href="events.html" class="btn btn-outline">View All Events</a>
             </div>
         </div>
     </section>
@@ -425,6 +447,8 @@
     </div>
 
     <script type="module" src="js/menu.js"></script>
+    <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/upcoming-events.js"></script>
 </body>
 </html>
