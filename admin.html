@@ -159,8 +159,8 @@
                                 <div class="progress-bar" id="progressBar"></div>
                             </div>
                             <div class="upload-status" id="uploadStatus"></div>
-                            <div class="image-preview-container" id="imagePreview">
-                                <img id="previewImg" src="" alt="Preview">
+                            <div class="image-preview-container" id="imagePreview" style="background: #000;">
+                                <img id="previewImg" src="" alt="Preview" style="object-fit: contain;">
                                 <button type="button" class="remove-image" onclick="removeImage()" title="Remove image">&times;</button>
                             </div>
                             <!-- Hidden field to store the URL after upload -->
@@ -177,6 +177,10 @@
                         <div class="form-group">
                             <label>Location</label>
                             <input type="text" id="location" value="Dune Bar & Kitchen" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Description</label>
+                            <textarea id="description" rows="4" placeholder="Event details..."></textarea>
                         </div>
                         <div class="form-group">
                             <label>Existing Image URL (optional, edit only)</label>
