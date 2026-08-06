@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Dune Bar & Kitchen</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .full-width { grid-column: span 2; }
+        #eventsTab, #bookingsTab { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Login Section -->
+        <div id="loginSection" class="login-box">
+            <h2 class="section-title text-center" style="font-size: 1.8rem; margin-bottom: 30px;">Admin <span class="accent">Login</span></h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="adminEmail" value="Dune@admin.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="adminPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="dashboard">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1 class="section-title" style="margin: 0;">Admin <span class="accent">Dashboard</span></h1>
+                <button onclick="handleLogout()" class="btn btn-outline btn-small">Logout</button>
+            </div>
+
+            <div class="admin-nav">
+                <div class="admin-nav-item active" onclick="switchTab('events')">Manage Events</div>
+                <div class="admin-nav-item" onclick="switchTab('bookings')">View Bookings</div>
+            </div>
+
+            <!-- Events Tab -->
+            <div id="eventsTab">
+                <div class="form-card">
+                    <h3 id="formTitle">Add New Event</h3>
+                    <form id="eventForm" class="event-form-grid">
+                        <input type="hidden" id="eventId">
+                        <div class="form-group">
+                            <label>Event Title</label>
+                            <input type="text" id="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Cover Photo URL</label>
+                            <input type="url" id="image_url" placeholder="https://example.com/image.jpg">
+                            <small style="color: #888; display: block; margin-top: 5px;">Upload images to Supabase Storage and paste the public URL here.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="time" id="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="location" value="Dune Bar & Kitchen" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Description</label>
+                            <textarea id="description" rows="3"></textarea>
+                        </div>
+                        <div class="full-width">
+                            <button type="submit" class="btn btn-primary">Save Event</button>
+                            <button type="button" onclick="resetForm()" class="btn btn-outline">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date/Time</th>
+                            <th>Location</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="eventsTableBody">
+                        <!-- Events loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bookings Tab -->
+            <div id="bookingsTab" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Guest Name</th>
+                            <th>Contact</th>
+                            <th>Guests</th>
+                            <th>Booked At</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                        <!-- Bookings loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
