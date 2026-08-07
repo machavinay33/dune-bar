@@ -673,9 +673,9 @@ const menuData = [
         "description": "A melt-in-the-mouth winter delicacy made with saffron-infused cream, paired with mini Cham Cham, rich dry mawa, and crunchy almond flakes."
       },
       {
-        "name": "CLASSIC COFFEE TIRAMISU",
+        "name": "OLD MONK AND COFFEE TIRAMISU",
         "price": "575",
-        "description": "Classic tiramisu with a rich espresso and premium spirits \u2014 smooth, boozy, unforgettable."
+        "description": "Classic tiramisu with a bold kick of Old Monk and rich espresso \u2014 smooth, boozy, unforgettable."
       },
       {
         "name": "CHOCOLATE MATILDA CAKE (CONTAINS EGG)",
