@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // File upload handling
     setupFileUpload();
+    
+    // Initialize menu management
+    initMenuManagement();
 });
 
 async function handleLogin(e) {
@@ -40,21 +43,26 @@ async function handleLogout() {
 function showDashboard() {
     document.getElementById('loginSection').style.display = 'none';
     document.getElementById('dashboardSection').style.display = 'block';
+    fetchMenuItems();
     fetchEvents();
     fetchBookings();
 }
 
 function switchTab(tab) {
     document.querySelectorAll('.admin-nav-item').forEach(el => el.classList.remove('active'));
+    document.getElementById('menuTab').style.display = 'none';
     document.getElementById('eventsTab').style.display = 'none';
     document.getElementById('bookingsTab').style.display = 'none';
 
-    if (tab === 'events') {
-        document.getElementById('eventsTab').style.display = 'block';
+    if (tab === 'menu') {
+        document.getElementById('menuTab').style.display = 'block';
         document.querySelectorAll('.admin-nav-item')[0].classList.add('active');
+    } else if (tab === 'events') {
+        document.getElementById('eventsTab').style.display = 'block';
+        document.querySelectorAll('.admin-nav-item')[1].classList.add('active');
     } else {
         document.getElementById('bookingsTab').style.display = 'block';
-        document.querySelectorAll('.admin-nav-item')[1].classList.add('active');
+        document.querySelectorAll('.admin-nav-item')[2].classList.add('active');
     }
 }
 

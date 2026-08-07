@@ -133,12 +133,60 @@
             </div>
 
             <div class="admin-nav">
-                <div class="admin-nav-item active" onclick="switchTab('events')">Manage Events</div>
+                <div class="admin-nav-item active" onclick="switchTab('menu')">Menu Management</div>
+                <div class="admin-nav-item" onclick="switchTab('events')">Manage Events</div>
                 <div class="admin-nav-item" onclick="switchTab('bookings')">View Bookings</div>
             </div>
 
+            <!-- Menu Management Tab -->
+            <div id="menuTab">
+                <div class="form-card">
+                    <h3 id="menuFormTitle">Add New Menu Item</h3>
+                    <form id="menuForm" class="event-form-grid">
+                        <input type="hidden" id="menuItemId">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" id="menuCategory" placeholder="e.g., ASIAN, INDIAN, SALAD" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Item Name</label>
+                            <input type="text" id="menuName" placeholder="e.g., KUNG PAO CHICKEN" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="text" id="menuPrice" placeholder="e.g., 655 or 555/585" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Description (Optional)</label>
+                            <textarea id="menuDescription" rows="3" placeholder="Item description..."></textarea>
+                        </div>
+                        <div class="full-width" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <button type="submit" class="btn btn-primary" id="menuSubmitBtn">Add Item</button>
+                            <button type="button" onclick="resetMenuForm()" class="btn btn-outline">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="admin-table-wrapper">
+                    <h3 style="margin-bottom: 20px;">All Menu Items</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Item Name</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menuTableBody">
+                            <!-- Menu items loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- Events Tab -->
-            <div id="eventsTab">
+            <div id="eventsTab" style="display: none;">
                 <div class="form-card">
                     <h3 id="formTitle">Add New Event</h3>
                     <form id="eventForm" class="event-form-grid">
@@ -233,6 +281,7 @@
     </div>
 
     <script src="js/supabase-config.js"></script>
+    <script src="js/menu-admin.js"></script>
     <script src="js/admin.js"></script>
 </body>
 </html>
