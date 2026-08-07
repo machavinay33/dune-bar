@@ -1,7 +1,5 @@
-// Menu Loader - Loads menu prices from Supabase
-// This replaces the static menu data with dynamic pricing
+// Menu Loader - Loads menu prices from Supabase with robust static fallback
 
-// Load menu from Supabase on page load
 document.addEventListener('DOMContentLoaded', async () => {
     await loadMenuFromSupabase();
 });
@@ -24,11 +22,28 @@ async function loadMenuFromSupabase() {
             if (typeof window.renderMenu === 'function') {
                 window.renderMenu();
             }
+        } else {
+            console.log('No menu items found in Supabase (table may be empty). Falling back to static menu.');
+            await loadStaticFallback();
         }
     } catch (error) {
         console.error('Error loading menu from Supabase:', error);
-        // Fallback to static menu if Supabase fails
         console.log('Falling back to static menu data');
+        await loadStaticFallback();
+    }
+}
+
+async function loadStaticFallback() {
+    try {
+        const module = await import('./menu.js');
+        if (!window.menuData || window.menuData.length === 0) {
+            window.menuData = module.default;
+            if (typeof window.renderMenu === 'function') {
+                window.renderMenu();
+            }
+        }
+    } catch (err) {
+        console.error('Error loading fallback menu:', err);
     }
 }
 
