@@ -1,8 +1,6 @@
 // Menu Loader - Loads menu prices from Supabase
 // This replaces the static menu data with dynamic pricing
 
-let menuData = [];
-
 // Load menu from Supabase on page load
 document.addEventListener('DOMContentLoaded', async () => {
     await loadMenuFromSupabase();
@@ -20,11 +18,11 @@ async function loadMenuFromSupabase() {
 
         if (data && data.length > 0) {
             // Transform Supabase data to match the expected menu structure
-            menuData = transformMenuData(data);
+            window.menuData = transformMenuData(data);
             
             // Re-render the menu if renderMenu function is available
-            if (typeof renderMenu === 'function') {
-                renderMenu();
+            if (typeof window.renderMenu === 'function') {
+                window.renderMenu();
             }
         }
     } catch (error) {

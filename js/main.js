@@ -323,38 +323,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuTabs = document.getElementById('menuTabs');
     const menuItems = document.getElementById('menuItems');
 
-    if (typeof menuData !== 'undefined') {
-        renderMenu();
-    } else {
-        // Fallback if menuData is not yet loaded (async)
-        import('./menu.js').then(module => {
-            window.menuData = module.default;
-            renderMenu();
-        });
-    }
+    window.renderMenu = function() {
+        // Use window.menuData if available, otherwise the local one
+        const data = window.menuData || (typeof menuData !== 'undefined' ? menuData : null);
+        
+        if (!data || data.length === 0) {
+            console.log('No menu data available to render');
+            return;
+        }
 
-    function renderMenu() {
-        if (!menuData || menuData.length === 0) return;
+        if (!menuTabs || !menuItems) return;
 
         // Create Tabs
         menuTabs.innerHTML = '';
-        menuData.forEach((category, index) => {
+        data.forEach((category, index) => {
             const tab = document.createElement('button');
             tab.className = `menu-tab ${index === 0 ? 'active' : ''}`;
             tab.textContent = category.category;
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-                displayCategory(category.items);
+                window.displayCategory(category.items);
             });
             menuTabs.appendChild(tab);
         });
 
         // Initial Display
-        displayCategory(menuData[0].items);
-    }
+        window.displayCategory(data[0].items);
+    };
 
-    function displayCategory(items) {
+    window.displayCategory = function(items) {
+        if (!menuItems) return;
         menuItems.style.opacity = '0';
         setTimeout(() => {
             menuItems.innerHTML = '';
@@ -373,6 +372,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             menuItems.style.opacity = '1';
         }, 200);
+    };
+
+    // Initial check for menu data
+    if (typeof menuData !== 'undefined' && menuData.length > 0) {
+        window.renderMenu();
+    } else if (window.menuData && window.menuData.length > 0) {
+        window.renderMenu();
+    } else {
+        // Fallback if menuData is not yet loaded (async)
+        import('./menu.js').then(module => {
+            if (!window.menuData || window.menuData.length === 0) {
+                window.menuData = module.default;
+                window.renderMenu();
+            }
+        }).catch(err => console.error('Error loading fallback menu:', err));
     }
 
     // ========================================
